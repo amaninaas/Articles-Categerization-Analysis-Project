@@ -24,7 +24,13 @@ Here, our aim is <b> to categorize unseen articles into 5 categories </b> namely
   ├── GitHub_url.txt                              : Github url in .txt
   └──  README.md                                  : Project Descriptions 
   ```
-# Methadology
+
+# Requirements
+<p align="justify">This project is created using Spyder as the main IDE. The main frameworks used in this project are Pandas, Matplotlib, Seaborn, Scikit-learn, Tensorflow and Tensorboard.</p>
+
+# Methodology
+This project contains one .py files. The training files is [Article_categorization_Analysis.py](https://github.com/amaninaas/Articles-Categorization-Analysis-Project/blob/a4c86a1f96a861ddc37a739b40e51853991bd2c4/Article_categorization_Analysis.py). The flow of the projects are as follows:
+
   - **Step 1 - Loading the data:**
      - <p align="justify"> Data preparation is the primary step for any deep learning problem. The dataset can be obtained from this link 
      [dataset](https://raw.githubusercontent.com/susanli2016/PyCon-Canada-2019-NLP-Tutorial/master/bbc-text.csv). 
