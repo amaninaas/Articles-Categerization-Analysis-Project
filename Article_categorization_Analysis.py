@@ -7,12 +7,12 @@ Original file is located at
     https://colab.research.google.com/drive/1Z__A9ZQC0sYyidOEGsk45g4RWleF4w7i
 """
 
-from google.colab import drive
-drive.mount('/content/drive')
+# from google.colab import drive
+# drive.mount('/content/drive')
 
-!ls "/content/drive/MyDrive"
+# !ls "/content/drive/MyDrive"
 
-!ls "/content/drive/MyDrive/PU_NLP"
+# !ls "/content/drive/MyDrive/PU_NLP"
 
 # Module
 import os
@@ -23,15 +23,11 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-from tensorflow.keras import Input,Sequential
 from tensorflow.keras.utils import plot_model
 from tensorflow.keras.callbacks import ModelCheckpoint
-from tensorflow.keras.layers import LSTM,Dense,Dropout
 from tensorflow.keras.preprocessing.text import Tokenizer
-from tensorflow.keras.layers import Embedding, Bidirectional
 from tensorflow.keras.callbacks import EarlyStopping,TensorBoard
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-
 
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.metrics import ConfusionMatrixDisplay
@@ -43,7 +39,7 @@ LOGS_PATH = os.path.join(os.getcwd(),'logs',
                          datetime.datetime.now().strftime('%Y%m%d-%H%M%S'))
 BEST_MODEL_PATH = os.path.join(os.getcwd(),'Saved_models','model_mcd.h5')
 TOKENIZER_SAVE_PATH = os.path.join(os.getcwd(),'Saved_models','tokenizer.json')
-OHE_SAVE_PATH = os.path.join(os.getcwd(),'Saved_models,'ohe.pkl')
+OHE_SAVE_PATH = os.path.join(os.getcwd(),'Saved_models', 'ohe.pkl')
 MODEL_SAVE_PATH = os.path.join(os.getcwd(),'Saved_models','model.h5')
 
 #%% Step 1) Data Loading
@@ -131,24 +127,17 @@ X_train,X_test,y_train,y_test = train_test_split(padded_article,
 
 #%% Model Development
 input_shape = np.shape(X_train)[1:]
+nb_class = len(np.unique(category,axis=0))
 out_dim = 128
 
-model = Sequential()
-model.add(Input(shape=(input_shape)))
-model.add(Embedding(vocab_size,out_dim)) 
-model.add(Bidirectional(LSTM(128,return_sequences=True)))
-model.add(Dropout(0.3))
-model.add(Bidirectional(LSTM(128,return_sequences=True)))
-model.add(Dropout(0.3))
-model.add(Bidirectional(LSTM(128)))
-model.add(Dropout(0.3))
-model.add(Dense(5,activation='softmax'))
-
-model.summary()
+# Model 
+from aca_module import ModelDevelopment
+md = ModelDevelopment()
+model = md.simple_dl_model(input_shape, nb_class, vocab_size, out_dim)
 
 model.compile(optimizer='adam',loss='categorical_crossentropy',
               metrics=['acc'])
-			  
+
 # Visualization the model
 plot_model(model,show_shapes=True,show_layer_names=True)
 
@@ -171,16 +160,16 @@ hist =model.fit(X_train,y_train,
 print(hist.history.keys())
 
 #%% Plot Graph
-plt.figure()
-plt.plot(hist.history['acc'])
-plt.plot(hist.history['val_acc'])
-plt.xlabel('epoch')
-plt.legend(['Training acc','Validation acc'])
-plt.show()
+
+from aca_module import ModelEvaluation
+me = ModelEvaluation()
+
+# Accuracy Graph
+me.plot_acc_graph(hist)
+# Loss Graph
+me.plot_loss_grapy(hist)
 
 print(model.evaluate(X_test,y_test))
-
-
 #%%Model Evaluation
 y_pred = np.argmax(model.predict(X_test),axis=1)
 y_actual = np.argmax(y_test,axis=1)
