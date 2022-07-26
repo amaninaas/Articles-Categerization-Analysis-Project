@@ -106,6 +106,7 @@ for i in range(len(article_int)):
   length_article.append(len(article_int[i]))
   #print(len(article_int[i]))
 
+# to get the number of max length for padding
 np.median(length_article)
 
 # comprehension
