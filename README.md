@@ -16,13 +16,12 @@ Here, our aim is <b> to categorize unseen articles into 5 categories </b> namely
 
 ## Project Organization
   ```
-  ├── Datasets                                    : Contains dataset used 
-  ├── Models                                      : Contains model used in Heart_Attack_App Deploy
-  ├── Statics                                     : Contains all save image (graphs/heatmap)
-  ├── __pycache__                                 : Contains .pyc file
+  ├── Datasets                                    : Contains file about the project
+  ├── Save_models                                 : Contains model saved from Article_categorization_Analysis.py (.pkl/.json/.h5 format)
+  ├── Statics                                     : Contains all save image (graphs/heatmap/tensorboard)
+  ├── .gitattributes                              : .gitattributes
+  ├── Article_categorization_Analysis.py          : Code file in python format
   ├── GitHub_url.txt                              : Github url in .txt
-  ├── Heart_Attack_App_deploy.py                  : App deploy in python format
-  ├── Heart_Attack_Predictions.py                 : Code file in python format
   └──  README.md                                  : Project Descriptions 
   ```
 # Methadology
