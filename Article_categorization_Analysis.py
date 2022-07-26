@@ -54,11 +54,11 @@ df = pd.read_csv(CSV_URL)
 df.head()
 df.tail()
 
-#%% Step 3) Data Cleaning 
-
 # can check duplicated in NLP
 # There is 99 duplicated text
 df.duplicated().sum()
+
+#%% Step 3) Data Cleaning 
 
 # Remove the duplicated data
 df = df.drop_duplicates()
