@@ -135,7 +135,8 @@ This project contains two .py files. The training file and the module file is [A
 
 
    - **Model Development**
-       - <p align="justify"> By using the model Sequential, LSTM, dropout, Bidirectional, Embedding and Dense. Our model development is been structured.</p>
+       - <p align="justify"> By using the model Sequential, LSTM, dropout, Bidirectional, Embedding and Dense. Our model development is been structured.</p> 
+       The model can be view in [aca_module.py](https://github.com/amaninaas/Articles-Categorization-Analysis-Project/blob/6872962fc578e4dce60ef58519af12411289aae3/aca_module.py) file.  
        
                 input_shape = np.shape(X_train)[1:]
                 nb_class = len(np.unique(category,axis=0))
