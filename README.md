@@ -17,7 +17,7 @@ Here, our aim is <b> to categorize unseen articles into 5 categories </b> namely
 ## Project Organization
   ```
   ├── Datasets                                    : Contains file about the project
-  ├── Save_models                                 : Contains model saved from Article_categorization_Analysis.py (.pkl/.json/.h5 format)
+  ├── Save_models                                 : Contains model saved from .py in .pkl/.json/.h5 format
   ├── Statics                                     : Contains all save image (graphs/heatmap/tensorboard)
   ├── .gitattributes                              : .gitattributes
   ├── Article_categorization_Analysis.py          : Code file in python format
