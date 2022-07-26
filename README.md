@@ -17,19 +17,24 @@ Here, our aim is <b> to categorize unseen articles into 5 categories </b> namely
 ## Project Organization :file_folder:
   ```
   ├── Datasets                                    : Contains file about the project
-  ├── Save_models                                 : Contains model saved from .py in .pkl/.json/.h5 format
+  ├── Saved_models                                : Contains model saved from .py in .pkl/.json/.h5 format
   ├── Statics                                     : Contains all save image (graphs/heatmap/tensorboard)
-  ├── .gitattributes                              : .gitattributes
+  ├── __pycache__                                 : .pcy file
+  ├── logs/20220726-160113                        : log folder
+  ├──.gitattributes                               : .gitattributes
   ├── Article_categorization_Analysis.py          : Code file in python format
   ├── GitHub_url.txt                              : Github url in .txt
-  └──  README.md                                  : Project Descriptions 
+  ├── README.md                                   : Project Descriptions
+  ├── aca_module.py                               : Module file in python format
+  └──  model.png                                  : Model picture
+  
   ```
 
 # Requirements :computer:
 <p align="justify">This project is created using Spyder as the main IDE. The main frameworks used in this project are Pandas, Matplotlib, Seaborn, Scikit-learn, Tensorflow and Tensorboard.</p>
 
 # Methodology :running:
-This project contains one .py files. The training files is [Article_categorization_Analysis.py](https://github.com/amaninaas/Articles-Categorization-Analysis-Project/blob/a4c86a1f96a861ddc37a739b40e51853991bd2c4/Article_categorization_Analysis.py). The flow of the projects are as follows:
+This project contains two .py files. The training file and the module file is [Article_categorization_Analysis.py](https://github.com/amaninaas/Articles-Categorization-Analysis-Project/blob/a4c86a1f96a861ddc37a739b40e51853991bd2c4/Article_categorization_Analysis.py), [aca_module.py](https://github.com/amaninaas/Articles-Categorization-Analysis-Project/blob/6872962fc578e4dce60ef58519af12411289aae3/aca_module.py). The flow of the projects are as follows:
 
   - **Step 1 - Loading the data:**
      - <p align="justify"> Data preparation is the primary step for any deep learning problem. The dataset can be obtained from this link 
@@ -130,30 +135,21 @@ This project contains one .py files. The training files is [Article_categorizati
 
 
    - **Model Development**
-       - <p align="justify"> By using the model Sequential, LSTM, dropout, Bidirectional, Embedding and Dense, Our model development is been structured.</p>
+       - <p align="justify"> By using the model Sequential, LSTM, dropout, Bidirectional, Embedding and Dense. Our model development is been structured.</p>
        
                 input_shape = np.shape(X_train)[1:]
+                nb_class = len(np.unique(category,axis=0))
                 out_dim = 128
 
-                model = Sequential()
-                model.add(Input(shape=(input_shape)))
-                model.add(Embedding(vocab_size,out_dim)) 
-                model.add(Bidirectional(LSTM(128,return_sequences=True)))
-                model.add(Dropout(0.3))
-                model.add(Bidirectional(LSTM(128,return_sequences=True)))
-                model.add(Dropout(0.3))
-                model.add(Bidirectional(LSTM(128)))
-                model.add(Dropout(0.3))
-                model.add(Dense(5,activation='softmax'))
-
-                model.summary()
+                # Model 
+                from aca_module import ModelDevelopment
+                md = ModelDevelopment()
+                model = md.simple_dl_model(input_shape, nb_class, vocab_size, out_dim)
 
                 model.compile(optimizer='adam',loss='categorical_crossentropy',
                               metrics=['acc'])
                      
-        - <p align="justify"> The model summary is shown below.</p>
-        
-        ![modelsummary](Statics/model_summary.jpeg)
+      
         
    - **Model Training**
        - <p align="justify"> This model include tensorboard callbacks, ModelCheckpoint, and EarlyStopping to reduce overfitting when training the model. This model only used 5 epoch to train.</p>
@@ -174,7 +170,7 @@ This project contains one .py files. The training files is [Article_categorizati
                                 callbacks=[mdc,tensorboard_callback,early_callback])
                                 
        - <p align="justify"> The visualization of our model architecture can be presented in the figure below: </p>
-       ![model](Statics/model.png)
+       ![model](https://github.com/amaninaas/Articles-Categorization-Analysis-Project/blob/6872962fc578e4dce60ef58519af12411289aae3/model.png)
 
    - **Model Evaluation**
       - <p align="justify"> Through this section, classification report and confusion matrix is been used as a part of our model evaluation and analysis. Around 92% accuracy have been achieved. </p>
