@@ -6,15 +6,15 @@
 ![Tensorflow](https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)
 ![Keras](https://img.shields.io/badge/Keras-D00000?style=for-the-badge&logo=Keras&logoColor=white)
 
-# Articles-Categorization-Analysis-Project
+# Articles-Categorization-Analysis-Project :speech_balloon:
 <p align="justify"> Sentiment analysis (or opinion mining) is a natural language processing (NLP) technique used to determine whether data is positive, negative or neutral. Sentiment analysis is often performed on textual data to help businesses monitor brand and product sentiment in customer feedback, and understand customer needs.</p>
 
-## Project Descriptions 
+## Project Descriptions :memo:
 <p align="justify"> Text documents are essential as they are one of the richest sources of data for businesses. Text documents often contain crucial information which might shape the market trends or influence the investment flows. Therefore, companies often hire analysts to monitor the trend via articles posted online, tweets on social media platforms such as Twitter or articles from newspaper. However, some companies may wish to only focus on articles related to technologies and politics. Thus, filtering of the articles into different categories is required.
 
 Here, our aim is <b> to categorize unseen articles into 5 categories </b> namely Sport, Tech, Business, Entertainment and Politics. </p> 
 
-## Project Organization
+## Project Organization :file_folder:
   ```
   ├── Datasets                                    : Contains file about the project
   ├── Save_models                                 : Contains model saved from .py in .pkl/.json/.h5 format
@@ -25,10 +25,10 @@ Here, our aim is <b> to categorize unseen articles into 5 categories </b> namely
   └──  README.md                                  : Project Descriptions 
   ```
 
-# Requirements
+# Requirements :computer:
 <p align="justify">This project is created using Spyder as the main IDE. The main frameworks used in this project are Pandas, Matplotlib, Seaborn, Scikit-learn, Tensorflow and Tensorboard.</p>
 
-# Methodology
+# Methodology :running:
 This project contains one .py files. The training files is [Article_categorization_Analysis.py](https://github.com/amaninaas/Articles-Categorization-Analysis-Project/blob/a4c86a1f96a861ddc37a739b40e51853991bd2c4/Article_categorization_Analysis.py). The flow of the projects are as follows:
 
   - **Step 1 - Loading the data:**
